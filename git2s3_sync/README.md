@@ -35,7 +35,7 @@ module "git2s3_sync" {
 1. **Public key for the SSH key pair**: Stored in AWS Secrets Manager as the `PUBLIC_KEY` entry in the SecretString of `aws_secretsmanager_secret.ssh_key_pair`. Obtainable from the command line via `aws secretsmanager get-secret-value --secret-id ${SECRET_ID} --query SecretString --output text | jq -r '.PUBLIC_KEY'` where `${SECRET_ID}` is the value of the `aws_secretsmanager_secret.ssh_key_pair.id` attribute.
 2. **API Gateway webhook URL**: This is available as a Terraform output (`webhook_api_url`) with a value of `"${aws_api_gateway_stage.webhook_prod.invoke_url}/gitpull"`. In GitHub, this can be added to the desired source repo under **Settings > Webhooks > Add webhook**. The **Content type** MUST be set to `application/json`; SSL verification should be **Enabled**; and 'Just the `push` event' can be used as the trigger for the webhook, as per the screenshot below:
 
-<!--screenshot-->
+![image](https://github.com/user-attachments/assets/e40c8710-6eab-4131-91da-4d2025403e3e)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
